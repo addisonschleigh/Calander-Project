@@ -12,6 +12,8 @@
     text-align: left;
     padding-top: 5px;
     padding-left: 5px;
+    display: flex;
+    flex-direction: column;
 }
 
 .calander {
@@ -29,7 +31,16 @@ h2 {
     font-weight: bold;
 }
 
-.day.reminder {
-    background: #fff8c4;
-    border: 2px solid orange;
+.day-reminder {
+    background: yellow;
+    min-height: 30px;
+}
+
+.day-number {
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 5px;
+    font-weight: bold;
 }

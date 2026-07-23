@@ -19,6 +19,14 @@ function Calander() {
     const[current, changeMonth] = useState(new Date().getMonth())
     const[days, setDays] = useState([])
     const[reminders, setReminders] = useState({})
+
+    useEffect(() => {
+        const savedReminders = localStorage.getItem("reminders");
+        if(savedReminders) {
+            setReminders(JSON.parse(savedReminders));
+        }
+    }, [])
+
     const date = new Date()
 
     function handleClick(day) {
@@ -31,10 +39,12 @@ function Calander() {
                 reminders[key] || ""
             )
             if(reminder !== null) {
-                setReminders({
+                const newReminders = {
                     ...reminders,
                     [key]: reminder
-                })
+                }
+                setReminders(newReminders);
+                localStorage.setItem("reminders",JSON.stringify(newReminders));
             }
         }
     }
@@ -136,11 +146,11 @@ function Calander() {
         } else if(current === 8) {
             setDays(september2026())
         } else if(current === 9){
-            setDays(october2026)
+            setDays(october2026())
         } else if(current === 10) {
             setDays(november2026())
         } else if(current === 11){
-            setDays(december2026)
+            setDays(december2026())
         } else {
             setDays([]);
         }
